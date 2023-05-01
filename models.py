@@ -1,3 +1,4 @@
+# Define all models that we need
 from dataclasses import dataclass
 from typing import List
 

@@ -1,5 +1,5 @@
+# Data structure to store price list
 from typing import Optional
-
 from models import Pricing
 
 
