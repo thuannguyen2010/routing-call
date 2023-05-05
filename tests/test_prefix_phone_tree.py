@@ -122,3 +122,24 @@ class TestPrefixPhoneTree(unittest.TestCase):
         tree.insert(pricing)
         result = tree.find_the_cheapest_operator("458097732")
         self.assertIsNone(result)
+
+    def test_find_the_cheapest_operator_for_phone_number_with_prefix_matched_two_operators(self):
+        """
+        Test find the cheapest operator when no prefix matches then return None
+        """
+        pricing_1 = Pricing(
+            prefix="46732",
+            operator_id="operator_A",
+            price=1.1
+        )
+        pricing_2 = Pricing(
+            prefix="467",
+            operator_id="operator_B",
+            price=1.0
+        )
+        tree = PrefixPhoneTree()
+        tree.insert(pricing_1)
+        tree.insert(pricing_2)
+        result = tree.find_the_cheapest_operator("46732000000")
+        self.assertIsNotNone(result)
+        self.assertEqual(result, pricing_2)

@@ -1,5 +1,6 @@
 # Data structure to store price list
-from typing import Optional
+from typing import Optional, Dict
+
 from models import Pricing
 
 
@@ -37,13 +38,21 @@ class PrefixPhoneTree:
         :param phone_number: user's phone number
         :return: the cheapest operator or none.
         """
-        result: Optional[Pricing] = None
+
+        def _get_result(r: Dict[str, Pricing]):
+            if not r:
+                return None
+            return min(r.values(), key=lambda x: x.price)
+
+        result: Dict[str, Pricing] = {}
         current = self._root
         for ch in phone_number:
             if ch not in current:
                 # stop searching
-                return result
+                return _get_result(result)
             # get the pricing of the longest prefix. If prefix doesn't have prefix, result is None
-            result = current[ch].get("#")
+            current_result: Pricing = current[ch].get("#")
+            if current_result:
+                result[current_result.operator_id] = current_result
             current = current[ch]
-        return result
+        return _get_result(result)

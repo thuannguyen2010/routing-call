@@ -28,7 +28,7 @@ if __name__ == '__main__':
     )
     operators = [operator_a, operator_b]
     handler = RoutingCallHandler(operators)
-    input_phone_numbers = ["+46-73-212345", "68123456789", "+4481737232"]
+    input_phone_numbers = ["+46-73-212345"]
     for phone_number in input_phone_numbers:
         result = handler.routing_call(phone_number)
         if result:
