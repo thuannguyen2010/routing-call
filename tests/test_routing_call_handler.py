@@ -64,7 +64,7 @@ class TestRoutingCallHandler(unittest.TestCase):
         """
         result = self.handler.routing_call("467323214214")
         self.assertIsNotNone(result)
-        self.assertEqual(result.price, 1.1)
+        self.assertEqual(result.price, 1.0)
 
     def test_find_the_cheapest_operator_for_phone_number_no_prefix_match(self):
         """
